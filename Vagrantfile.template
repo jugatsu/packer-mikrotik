@@ -1,0 +1,19 @@
+Vagrant.configure(2) do |config|
+  config.ssh.username = "admin"
+  config.ssh.password = ""
+  config.ssh.insert_key = false
+  config.vm.boot_timeout = 120
+  config.vm.communicator = "ssh"
+  config.vm.graceful_halt_timeout = 60
+  config.vm.guest = :linux
+  config.vm.network "private_network", virtualbox__intnet: "intnet", auto_config: false
+  config.vm.network "private_network", virtualbox__intnet: "intnet", auto_config: false
+  config.vm.network "private_network", virtualbox__intnet: "intnet", auto_config: false
+  config.vm.network "private_network", virtualbox__intnet: "intnet", auto_config: false
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 128
+    vb.gui = false
+    vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+  end
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+end
